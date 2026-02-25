@@ -1,0 +1,20 @@
+(monday) PS C:\Users\jjvil\Documents\Revature_PAID_TRAINING\Part 2 Training\Juan-Jose-Villela-Martinez\week_1\exercises> uv run .\Wednesday\transformations.py
+'2' is not recognized as an internal or external command,
+operable program or batch file.
+26/02/25 01:44:34 WARN Shell: Did not find winutils.exe: java.io.FileNotFoundException: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset. -see https://wiki.apache.org/hadoop/WindowsProblems
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/02/25 01:44:35 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Errors: ['2024-01-15 10:01:00 ERROR Database connection failed', '2024-01-15 10:04:00 ERROR Timeout occurred']
+Levels: ['INFO', 'ERROR', 'INFO', 'WARN', 'ERROR', 'INFO', 'DEBUG']
+Error messages: ['Database connection failed', 'Timeout occurred']
+Unique words: ['python', 'scala', 'spark', 'data', 'hadoop']
+Word counts: [('python', 1), ('scala', 1), ('spark', 4), ('data', 2), ('hadoop', 2)]
+Sorted: [('spark', 4), ('data', 2), ('hadoop', 2), ('python', 1), ('scala', 1)]
+Union: [1, 2, 3, 4, 5, 4, 5, 6, 7, 8]
+Intersection: [4, 5]
+Difference: [1, 2, 3]
+Requests per endpoint: [('/products', 2), ('/home', 2), ('/login', 1)]
+(monday) PS C:\Users\jjvil\Documents\Revature_PAID_TRAINING\Part 2 Training\Juan-Jose-Villela-Martinez\week_1\exercises> SUCCESS: The process with PID 9816 (child process of PID 6076) has been terminated.
+SUCCESS: The process with PID 6076 (child process of PID 16328) has been terminated.
+SUCCESS: The process with PID 16328 (child process of PID 11508) has been terminated.
