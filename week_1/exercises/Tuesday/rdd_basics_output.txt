@@ -1,0 +1,34 @@
+(monday) PS C:\Users\jjvil\Documents\Revature_PAID_TRAINING\Part 2 Training\Juan-Jose-Villela-Martinez\week_1\exercises> uv run .\Tuesday\rdd_basics.py
+'2' is not recognized as an internal or external command,
+operable program or batch file.
+26/02/24 23:43:43 WARN Shell: Did not find winutils.exe: java.io.FileNotFoundException: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset. -see https://wiki.apache.org/hadoop/WindowsProblems
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/02/24 23:43:43 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+Numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Partitions: 12
+
+Partitioned Numbers: [1, 2, 3, 4, 5, 6]
+Partitions: 3
+
+Range of Numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Squared Numbers: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+Prefixed Numbers: ['num_1', 'num_2', 'num_3', 'num_4', 'num_5', 'num_6', 'num_7', 'num_8', 'num_9', 'num_10']
+
+Even Numbers: [2, 4, 6, 8, 10]
+
+Greater than 5 nums: [6, 7, 8, 9, 10]
+
+Combined evens and > 5: [6, 8, 10]
+
+Words flatten: ['Hello', 'World', 'Apache', 'Spark', 'is', 'Fast', 'PySpark', 'is', 'Python', 'plus', 'Spark']
+
+Word lengths: [('Hello', 5), ('World', 5), ('Apache', 6), ('Spark', 5), ('is', 2), ('Fast', 4), ('PySpark', 7), ('is', 2), ('Python', 6), ('plus', 4), ('Spark', 5)]
+
+Error Words: ['ERROR:', 'CONNECTION', 'FAILED', 'ERROR:', 'TIMEOUT', 'OCCURRED']
+(monday) PS C:\Users\jjvil\Documents\Revature_PAID_TRAINING\Part 2 Training\Juan-Jose-Villela-Martinez\week_1\exercises> SUCCESS: The process with PID 6768 (child process of PID 1412) has been terminated.
+SUCCESS: The process with PID 1412 (child process of PID 3568) has been terminated.
+SUCCESS: The process with PID 3568 (child process of PID 17100) has been terminated.

@@ -1,0 +1,26 @@
+(monday) PS C:\Users\jjvil\Documents\Revature_PAID_TRAINING\Part 2 Training\Juan-Jose-Villela-Martinez\week_1\excercises\Monday> uv run "..\Tuesday\accumulators.py"
+'2' is not recognized as an internal or external command,
+operable program or batch file.
+26/02/24 21:01:53 WARN Shell: Did not find winutils.exe: java.io.FileNotFoundException: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset. -see https://wiki.apache.org/hadoop/WindowsProblems
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/02/24 21:01:53 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+unset. -see https://wiki.apache.org/hadoop/WindowsProblems
+Setting default log level to "WARN".
+unset. -see https://wiki.apache.org/hadoop/WindowsProblems
+unset. -see https://wiki.apache.org/hadoop/WindowsProblems
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/02/24 21:01:53 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Records processed: 100
+Total records: 8
+Valid records: 5
+Invalid records: 3
+Error rate: 37.5%
+Electronics: 3
+Clothing: 2
+Food: 2
+Total sales: $1627
+(monday) PS C:\Users\jjvil\Documents\Revature_PAID_TRAINING\Part 2 Training\Juan-Jose-Villela-Martinez\week_1\excercises\Monday> SUCCESS: The process with PID 1544 (child process of PID 20712) has been terminated.
+SUCCESS: The process with PID 20712 (child process of PID 16704) has been terminated.
+SUCCESS: The process with PID 16704 (child process of PID 8636) has been terminated.
