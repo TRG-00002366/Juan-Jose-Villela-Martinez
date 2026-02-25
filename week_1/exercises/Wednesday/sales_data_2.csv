@@ -1,0 +1,11 @@
+product_id,name,category,price,quantity
+P011,Tablet,Electronics,399.99,12
+P012,Router,Electronics,89.99,28
+P013,Printer,Electronics,159.99,9
+P014,Desk Organizer,Furniture,24.99,40
+P015,Office Sofa,Furniture,549.99,3
+P016,Floor Mat,Furniture,39.99,35
+P017,Smartphone,Electronics,799.99,7
+P018,Coffee Table,Furniture,129.99,14
+P019,USB Hub,Electronics,19.99,60
+P020,Standing Desk,Furniture,399.99,6
