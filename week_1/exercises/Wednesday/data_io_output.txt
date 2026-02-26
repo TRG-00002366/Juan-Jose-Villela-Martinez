@@ -1,0 +1,12 @@
+jjvil@DESKTOP-BKBS4MB:~/Juan-Jose-Villela-Martinez/week_1/exercises$ uv run Wednesday/data_io.py
+26/02/25 23:25:47 WARN Utils: Your hostname, DESKTOP-BKBS4MB resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/02/25 23:25:47 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/02/25 23:25:47 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Header: product_id,name,category,price,quantity
+Data records: 7
+First record: P001,Laptop,Electronics,999.99,5
+{'product_id': 'P001', 'name': 'Laptop', 'category': 'Electronics', 'price': 999.99, 'quantity': 5}
+{'product_id': 'P002', 'name': 'Mouse', 'category': 'Electronics', 'price': 29.99, 'quantity': 50}
+{'product_id': 'P003', 'name': 'Desk', 'category': 'Furniture', 'price': 199.99, 'quantity': 10}

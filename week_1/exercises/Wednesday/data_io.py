@@ -57,7 +57,7 @@ revenue.saveAsTextFile("./Wednesday/output/")
 
 all_data = sc.textFile("./Wednesday/sales_data*.csv")
 
-# # TASK 5: COALESCE OUTPUT
-# # YOUR CODE: Use coalesce(1) before saveAsTextFile
-# # This creates a single output file instead of multiple parts
+# # # TASK 5: COALESCE OUTPUT
+# # # YOUR CODE: Use coalesce(1) before saveAsTextFile
+# # # This creates a single output file instead of multiple parts
 all_data.coalesce(1).saveAsTextFile("./Wednesday/output/all_sales_data")

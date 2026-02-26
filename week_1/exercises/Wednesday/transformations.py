@@ -1,5 +1,3 @@
-from tkinter import N
-
 from pyspark import SparkContext
 
 sc = SparkContext("local[*]", "Transformations")
