@@ -1,0 +1,26 @@
+jjvil@DESKTOP-BKBS4MB:~/Juan-Jose-Villela-Martinez$ uv run ./week_1/exercises/Wednesday/pair_rdds.py
+26/02/26 01:52:04 WARN Utils: Your hostname, DESKTOP-BKBS4MB resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/02/26 01:52:04 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/02/26 01:52:04 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Word Counts (top 10):
+  Spark: 4
+  is: 3
+  and: 2
+  Python: 2
+  for: 2
+  used: 1
+  processing: 1
+  API: 1
+  fast: 1
+  general: 1
+Inner join: [('P002', ('Mouse', 29)), ('P003', ('Keyboard', 79)), ('P001', ('Laptop', 999))]
+Left join: [('P002', ('Mouse', 29)), ('P003', ('Keyboard', 79)), ('P004', ('Monitor', None)), ('P001', ('Laptop', 999))]
+Right join: [('P002', ('Mouse', 29)), ('P005', (None, 199)), ('P003', ('Keyboard', 79)), ('P001', ('Laptop', 999))]
+Full join: [('P002', ('Mouse', 29)), ('P005', (None, 199)), ('P003', ('Keyboard', 79)), ('P004', ('Monitor', None)), ('P001', ('Laptop', 999))]
+Employee counts: [('Engineering', 3), ('HR', 1), ('Sales', 2)]
+Total salaries: [('Engineering', 270000), ('HR', 60000), ('Sales', 145000)]
+Average Salary Per Department: [('Engineering', 90000.0), ('HR', 60000.0), ('Sales', 72500.0)]
+Alphabetical: [('API', 1), ('APIs', 1), ('Apache', 1), ('Java', 1), ('PySpark', 1), ('Python', 2), ('Scala', 1), ('Spark', 4), ('a', 1), ('and', 2)]
+Reverse: [('used', 1), ('the', 1), ('provides', 1), ('processing', 1), ('is', 3), ('in', 1), ('general', 1), ('for', 2), ('fast', 1), ('engine', 1)]
