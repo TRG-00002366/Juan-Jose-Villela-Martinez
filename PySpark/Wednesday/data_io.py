@@ -1,10 +1,3 @@
-import os
-import sys
-
-# Set Hadoop home for Windows
-os.environ['HADOOP_HOME'] = r'C:\hadoop'
-sys.path.append(r'C:\hadoop\bin')
-
 from pyspark import SparkContext
 
 sc = SparkContext("local[*]", "DataIO")
