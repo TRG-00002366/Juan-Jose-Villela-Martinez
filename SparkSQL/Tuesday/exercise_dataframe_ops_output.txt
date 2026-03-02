@@ -1,0 +1,148 @@
+(pyspark-venv) jjvil@DESKTOP-BKBS4MB:~/Juan-Jose-Villela-Martinez$ uv run SparkSQL/Tuesday/exercise_dataframe_ops.py
+26/03/02 01:41:44 WARN Utils: Your hostname, DESKTOP-BKBS4MB resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/03/02 01:41:44 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/03/02 01:41:44 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+=== Exercise: DataFrame Operations ===
+
+Employee Data:
++---+-------+-----------+------+----------+
+| id|   name| department|salary| hire_date|
++---+-------+-----------+------+----------+
+|  1|  Alice|Engineering| 75000|2020-01-15|
+|  2|    Bob|  Marketing| 65000|2019-06-01|
+|  3|Charlie|Engineering| 80000|2021-03-20|
+|  4|  Diana|      Sales| 55000|2018-11-10|
+|  5|    Eve|  Marketing| 70000|2020-09-05|
+|  6|  Frank|Engineering| 72000|2022-01-10|
+|  7|  Grace|      Sales| 58000|2021-07-15|
++---+-------+-----------+------+----------+
+
+
+--- Task 1: Schema Inspection ---
+root
+ |-- id: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- department: string (nullable = true)
+ |-- salary: long (nullable = true)
+ |-- hire_date: string (nullable = true)
+
+['id', 'name', 'department', 'salary', 'hire_date']
+[('id', 'bigint'), ('name', 'string'), ('department', 'string'), ('salary', 'bigint'), ('hire_date', 'string')]
+
+--- Task 2: Column Selection ---
++-------+------+
+|   name|salary|
++-------+------+
+|  Alice| 75000|
+|    Bob| 65000|
+|Charlie| 80000|
+|  Diana| 55000|
+|    Eve| 70000|
+|  Frank| 72000|
+|  Grace| 58000|
++-------+------+
+
++-------+-----------+------+----------+
+|   name| department|salary| hire_date|
++-------+-----------+------+----------+
+|  Alice|Engineering| 75000|2020-01-15|
+|    Bob|  Marketing| 65000|2019-06-01|
+|Charlie|Engineering| 80000|2021-03-20|
+|  Diana|      Sales| 55000|2018-11-10|
+|    Eve|  Marketing| 70000|2020-09-05|
+|  Frank|Engineering| 72000|2022-01-10|
+|  Grace|      Sales| 58000|2021-07-15|
++-------+-----------+------+----------+
+
++---+-------+-----------+------+----------+-----------------+
+| id|   name| department|salary| hire_date|   monthly_salary|
++---+-------+-----------+------+----------+-----------------+
+|  1|  Alice|Engineering| 75000|2020-01-15|           6250.0|
+|  2|    Bob|  Marketing| 65000|2019-06-01|5416.666666666667|
+|  3|Charlie|Engineering| 80000|2021-03-20|6666.666666666667|
+|  4|  Diana|      Sales| 55000|2018-11-10|4583.333333333333|
+|  5|    Eve|  Marketing| 70000|2020-09-05|5833.333333333333|
+|  6|  Frank|Engineering| 72000|2022-01-10|           6000.0|
+|  7|  Grace|      Sales| 58000|2021-07-15|4833.333333333333|
++---+-------+-----------+------+----------+-----------------+
+
+
+--- Task 3: Adding and Modifying Columns ---
+
+--- Task 4: Filtering Rows ---
++---+-------+-----------+-------+----------+-------+-----------+----------+
+| id|   name| department| salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+|  1|  Alice|Engineering|78750.0|2020-01-15|    USA|     Senior|     ALICE|
+|  3|Charlie|Engineering|84000.0|2021-03-20|    USA|     Senior|   CHARLIE|
+|  5|    Eve|  Marketing|73500.0|2020-09-05|    USA|        Mid|       EVE|
+|  6|  Frank|Engineering|75600.0|2022-01-10|    USA|        Mid|     FRANK|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+
++---+-------+-----------+-------+----------+-------+-----------+----------+
+| id|   name| department| salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+|  1|  Alice|Engineering|78750.0|2020-01-15|    USA|     Senior|     ALICE|
+|  3|Charlie|Engineering|84000.0|2021-03-20|    USA|     Senior|   CHARLIE|
+|  6|  Frank|Engineering|75600.0|2022-01-10|    USA|        Mid|     FRANK|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+
++---+-------+-----------+-------+----------+-------+-----------+----------+
+| id|   name| department| salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+|  1|  Alice|Engineering|78750.0|2020-01-15|    USA|     Senior|     ALICE|
+|  2|    Bob|  Marketing|68250.0|2019-06-01|    USA|        Mid|       BOB|
+|  3|Charlie|Engineering|84000.0|2021-03-20|    USA|     Senior|   CHARLIE|
+|  5|    Eve|  Marketing|73500.0|2020-09-05|    USA|        Mid|       EVE|
+|  6|  Frank|Engineering|75600.0|2022-01-10|    USA|        Mid|     FRANK|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+
++---+-------+-----------+-------+----------+-------+-----------+----------+
+| id|   name| department| salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+|  1|  Alice|Engineering|78750.0|2020-01-15|    USA|     Senior|     ALICE|
+|  3|Charlie|Engineering|84000.0|2021-03-20|    USA|     Senior|   CHARLIE|
+|  5|    Eve|  Marketing|73500.0|2020-09-05|    USA|        Mid|       EVE|
+|  6|  Frank|Engineering|75600.0|2022-01-10|    USA|        Mid|     FRANK|
+|  7|  Grace|      Sales|60900.0|2021-07-15|    USA|      Entry|     GRACE|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+
+
+--- Task 5: Sorting ---
++---+-------+-----------+-------+----------+-------+-----------+----------+
+| id|   name| department| salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+|  4|  Diana|      Sales|57750.0|2018-11-10|    USA|      Entry|     DIANA|
+|  7|  Grace|      Sales|60900.0|2021-07-15|    USA|      Entry|     GRACE|
+|  2|    Bob|  Marketing|68250.0|2019-06-01|    USA|        Mid|       BOB|
+|  5|    Eve|  Marketing|73500.0|2020-09-05|    USA|        Mid|       EVE|
+|  6|  Frank|Engineering|75600.0|2022-01-10|    USA|        Mid|     FRANK|
+|  1|  Alice|Engineering|78750.0|2020-01-15|    USA|     Senior|     ALICE|
+|  3|Charlie|Engineering|84000.0|2021-03-20|    USA|     Senior|   CHARLIE|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+
++---+-------+-----------+-------+----------+-------+-----------+----------+
+| id|   name| department| salary| hire_date|country|salary_tier|name_upper|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+|  3|Charlie|Engineering|84000.0|2021-03-20|    USA|     Senior|   CHARLIE|
+|  1|  Alice|Engineering|78750.0|2020-01-15|    USA|     Senior|     ALICE|
+|  6|  Frank|Engineering|75600.0|2022-01-10|    USA|        Mid|     FRANK|
+|  5|    Eve|  Marketing|73500.0|2020-09-05|    USA|        Mid|       EVE|
+|  2|    Bob|  Marketing|68250.0|2019-06-01|    USA|        Mid|       BOB|
+|  7|  Grace|      Sales|60900.0|2021-07-15|    USA|      Entry|     GRACE|
+|  4|  Diana|      Sales|57750.0|2018-11-10|    USA|      Entry|     DIANA|
++---+-------+-----------+-------+----------+-------+-----------+----------+
+
+
+--- Task 6: Complete Pipeline ---
++-------+-----------+-------+------+
+|   name| department| salary| bonus|
++-------+-----------+-------+------+
+|Charlie|Engineering|84000.0|8400.0|
+|  Alice|Engineering|78750.0|7875.0|
+|  Frank|Engineering|75600.0|7560.0|
+|    Eve|  Marketing|73500.0|7350.0|
+|  Grace|      Sales|60900.0|6090.0|
++-------+-----------+-------+------+
