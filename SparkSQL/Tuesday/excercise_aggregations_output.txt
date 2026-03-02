@@ -1,0 +1,166 @@
+(pyspark-venv) jjvil@DESKTOP-BKBS4MB:~/Juan-Jose-Villela-Martinez$ uv run SparkSQL/Tuesday/excercise_aggregations.py
+26/03/02 00:48:16 WARN Utils: Your hostname, DESKTOP-BKBS4MB resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/03/02 00:48:16 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/03/02 00:48:16 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+=== Exercise: Aggregations ===
+
+Sales Data:
++-------+-----------+-------+------+-----------+
+|  month|   category|product|amount|salesperson|
++-------+-----------+-------+------+-----------+
+|2023-01|Electronics| Laptop|  1200|      Alice|
+|2023-01|Electronics|  Phone|   800|        Bob|
+|2023-01|Electronics| Tablet|   500|      Alice|
+|2023-01|   Clothing| Jacket|   150|    Charlie|
+|2023-01|   Clothing|  Shoes|   100|      Diana|
+|2023-02|Electronics| Laptop|  1300|        Eve|
+|2023-02|Electronics|  Phone|   850|      Alice|
+|2023-02|   Clothing| Jacket|   175|        Bob|
+|2023-02|   Clothing|  Pants|    80|    Charlie|
+|2023-03|Electronics| Laptop|  1100|      Frank|
+|2023-03|Electronics|  Phone|   750|      Grace|
+|2023-03|   Clothing|  Shoes|   120|      Alice|
++-------+-----------+-------+------+-----------+
+
+
+--- Task 1: Simple Aggregations ---
++------------+-------------+---------+---------+
+|Total Amount|Total Average|Total Min|Total Max|
++------------+-------------+---------+---------+
+|        7125|       593.75|       80|     1300|
++------------+-------------+---------+---------+
+
++---------------------+
+|Total number of sales|
++---------------------+
+|                   12|
++---------------------+
+
++------------------------+
+|count(DISTINCT category)|
++------------------------+
+|                       2|
++------------------------+
+
+
+--- Task 2: GroupBy Single Aggregation ---
++-----------+-----------+
+|   category|sum(amount)|
++-----------+-----------+
+|Electronics|       6500|
+|   Clothing|        625|
++-----------+-----------+
+
++-------+-----------------+
+|  month|      avg(amount)|
++-------+-----------------+
+|2023-01|            550.0|
+|2023-02|           601.25|
+|2023-03|656.6666666666666|
++-------+-----------------+
+
++-----------+------------+
+|salesperson|Transactions|
++-----------+------------+
+|      Alice|           4|
+|        Bob|           2|
+|    Charlie|           2|
+|      Diana|           1|
+|        Eve|           1|
+|      Frank|           1|
+|      Grace|           1|
++-----------+------------+
+
+
+--- Task 3: GroupBy Multiple Aggregations ---
++-----------+------------------+-------------+--------------------+------------+
+|   category|Total Transactions|Total Revenue|Average Sales amount|Highest Sale|
++-----------+------------------+-------------+--------------------+------------+
+|Electronics|                 7|         6500|   928.5714285714286|        1300|
+|   Clothing|                 5|          625|               125.0|         175|
++-----------+------------------+-------------+--------------------+------------+
+
++-----------+---------------+-------------+-------------+
+|salesperson|Number of Sales|Total Revenue|Products Sold|
++-----------+---------------+-------------+-------------+
+|      Grace|              1|          750|            1|
+|      Diana|              1|          100|            1|
+|    Charlie|              2|          230|            2|
+|        Bob|              2|          975|            2|
+|      Alice|              4|         2670|            4|
+|        Eve|              1|         1300|            1|
+|      Frank|              1|         1100|            1|
++-----------+---------------+-------------+-------------+
+
+
+--- Task 4: Multi-Column GroupBy ---
++-------+-----------+-----------+
+|  month|   category|sum(amount)|
++-------+-----------+-----------+
+|2023-01|Electronics|       2500|
+|2023-01|   Clothing|        250|
+|2023-02|Electronics|       2150|
+|2023-02|   Clothing|        255|
+|2023-03|Electronics|       1850|
+|2023-03|   Clothing|        120|
++-------+-----------+-----------+
+
++-----------+-------+-----------+
+|salesperson|  month|max(amount)|
++-----------+-------+-----------+
+|      Alice|2023-01|       1200|
+|        Bob|2023-01|        800|
+|    Charlie|2023-01|        150|
+|      Diana|2023-01|        100|
+|        Eve|2023-02|       1300|
+|      Alice|2023-02|        850|
+|        Bob|2023-02|        175|
+|    Charlie|2023-02|         80|
+|      Frank|2023-03|       1100|
+|      Grace|2023-03|        750|
+|      Alice|2023-03|        120|
++-----------+-------+-----------+
+
+
+--- Task 5: Filtering After Aggregation ---
++-----------+-------------+
+|   category|total_revenue|
++-----------+-------------+
+|Electronics|         6500|
++-----------+-------------+
+
++-----------+------------+
+|salesperson|Transactions|
++-----------+------------+
+|      Alice|           4|
++-----------+------------+
+
++-------+-----------+-----------------+
+|  month|   category|    avg_per_month|
++-------+-----------+-----------------+
+|2023-01|Electronics|833.3333333333334|
+|2023-02|Electronics|           1075.0|
+|2023-03|Electronics|            925.0|
++-------+-----------+-----------------+
+
+
+--- Challenge: Business Questions ---
++-----------+-----------------+
+|   category|       avg_amount|
++-----------+-----------------+
+|Electronics|928.5714285714286|
++-----------+-----------------+
+
++-----------+-----------+
+|salesperson|Top Revenue|
++-----------+-----------+
+|      Alice|       2670|
++-----------+-----------+
+
++-------+---------------+
+|  month|unique_products|
++-------+---------------+
+|2023-01|              5|
++-------+---------------+
