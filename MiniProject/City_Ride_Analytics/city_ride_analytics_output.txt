@@ -1,0 +1,229 @@
+RIDES SCHEMA
+root
+ |-- ride_id: integer (nullable = true)
+ |-- driver_id: integer (nullable = true)
+ |-- pickup_location: string (nullable = true)
+ |-- dropoff_location: string (nullable = true)
+ |-- distance_miles: double (nullable = true)
+ |-- fare_amount: double (nullable = true)
+ |-- ride_date: date (nullable = true)
+ |-- ride_type: string (nullable = true)
+ |-- rating: double (nullable = true)
+
+
+RIDES First 5 rows
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+|ride_id|driver_id|pickup_location|dropoff_location|distance_miles|fare_amount|ride_date |ride_type|rating|
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+|1001   |201      |Downtown       |Midtown         |3.2           |12.5       |2025-01-05|standard |4.5   |
+|1002   |202      |Airport        |Suburbs         |18.5          |45.0       |2025-01-06|premium  |5.0   |
+|1003   |203      |Uptown         |Downtown        |5.8           |22.0       |2025-01-06|standard |3.5   |
+|1004   |201      |Midtown        |Airport         |16.2          |40.0       |2025-01-07|premium  |4.0   |
+|1005   |204      |Suburbs        |Uptown          |10.4          |30.0       |2025-01-08|pool     |NULL  |
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+only showing top 5 rows
+
+
+DRIVERS SCHEMA
+root
+ |-- driver_id: integer (nullable = true)
+ |-- driver_name: string (nullable = true)
+ |-- vehicle_type: string (nullable = true)
+ |-- license_year: integer (nullable = true)
+
+
+DRIVERS First 5 rows
++---------+-------------+------------+------------+
+|driver_id|driver_name  |vehicle_type|license_year|
++---------+-------------+------------+------------+
+|201      |Alice Johnson|sedan       |2018        |
+|202      |Bob Martinez |suv         |2015        |
+|203      |Carol Chen   |hatchback   |2020        |
+|204      |David Kim    |sedan       |2017        |
+|205      |Eva Patel    |hatchback   |2019        |
++---------+-------------+------------+------------+
+only showing top 5 rows
+
+Selected columns: ride_id, pickup_location, dropoff_location, fare_amount
++-------+---------------+----------------+-----------+
+|ride_id|pickup_location|dropoff_location|fare_amount|
++-------+---------------+----------------+-----------+
+|1001   |Downtown       |Midtown         |12.5       |
+|1002   |Airport        |Suburbs         |45.0       |
+|1003   |Uptown         |Downtown        |22.0       |
+|1004   |Midtown        |Airport         |40.0       |
+|1005   |Suburbs        |Uptown          |30.0       |
++-------+---------------+----------------+-----------+
+only showing top 5 rows
+
+Found 7 premium rides with distance > 5 miles
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+|ride_id|driver_id|pickup_location|dropoff_location|distance_miles|fare_amount|ride_date |ride_type|rating|
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+|1002   |202      |Airport        |Suburbs         |18.5          |45.0       |2025-01-06|premium  |5.0   |
+|1004   |201      |Midtown        |Airport         |16.2          |40.0       |2025-01-07|premium  |4.0   |
+|1008   |206      |Uptown         |Airport         |14.0          |38.5       |2025-01-12|premium  |4.2   |
+|1010   |207      |Airport        |Downtown        |17.8          |42.0       |2025-01-15|premium  |4.7   |
+|1013   |208      |Downtown       |Airport         |15.3          |39.0       |2025-01-20|premium  |NULL  |
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+only showing top 5 rows
+
+Added 'fare_per_mile' column
++-------+--------------+-----------+------------------+
+|ride_id|distance_miles|fare_amount|fare_per_mile     |
++-------+--------------+-----------+------------------+
+|1001   |3.2           |12.5       |3.90625           |
+|1002   |18.5          |45.0       |2.4324324324324325|
+|1003   |5.8           |22.0       |3.793103448275862 |
+|1004   |16.2          |40.0       |2.469135802469136 |
+|1005   |10.4          |30.0       |2.8846153846153846|
++-------+--------------+-----------+------------------+
+only showing top 5 rows
+
+Dropped 'ride_type' column:
++-------+---------+---------------+----------------+--------------+-----------+----------+------+
+|ride_id|driver_id|pickup_location|dropoff_location|distance_miles|fare_amount|ride_date |rating|
++-------+---------+---------------+----------------+--------------+-----------+----------+------+
+|1001   |201      |Downtown       |Midtown         |3.2           |12.5       |2025-01-05|4.5   |
+|1002   |202      |Airport        |Suburbs         |18.5          |45.0       |2025-01-06|5.0   |
+|1003   |203      |Uptown         |Downtown        |5.8           |22.0       |2025-01-06|3.5   |
+|1004   |201      |Midtown        |Airport         |16.2          |40.0       |2025-01-07|4.0   |
+|1005   |204      |Suburbs        |Uptown          |10.4          |30.0       |2025-01-08|NULL  |
++-------+---------+---------------+----------------+--------------+-----------+----------+------+
+only showing top 5 rows
+
+Renamed: pickup_location to start_area, dropoff_location to end_area
++-------+----------+--------+
+|ride_id|start_area|end_area|
++-------+----------+--------+
+|1001   |Downtown  |Midtown |
+|1002   |Airport   |Suburbs |
+|1003   |Uptown    |Downtown|
+|1004   |Midtown   |Airport |
+|1005   |Suburbs   |Uptown  |
++-------+----------+--------+
+only showing top 5 rows
+
+Total revenue per ride type:
++---------+-------------+
+|ride_type|total_revenue|
++---------+-------------+
+|pool     |128.5        |
+|standard |118.75       |
+|premium  |287.5        |
++---------+-------------+
+
+Average rating per driver:
++---------+------------------+
+|driver_id|avg_rating        |
++---------+------------------+
+|201      |4.1000000000000005|
+|202      |4.95              |
+|203      |3.6333333333333333|
+|204      |3.8499999999999996|
+|205      |4.699999999999999 |
+|206      |3.7               |
+|207      |4.35              |
+|208      |NULL              |
++---------+------------------+
+
+Joined rides with drivers: 20 records
++-------+---------+-------------+------------+---------------+----------------+-----------+
+|ride_id|driver_id|driver_name  |vehicle_type|pickup_location|dropoff_location|fare_amount|
++-------+---------+-------------+------------+---------------+----------------+-----------+
+|1001   |201      |Alice Johnson|sedan       |Downtown       |Midtown         |12.5       |
+|1002   |202      |Bob Martinez |suv         |Airport        |Suburbs         |45.0       |
+|1003   |203      |Carol Chen   |hatchback   |Uptown         |Downtown        |22.0       |
+|1004   |201      |Alice Johnson|sedan       |Midtown        |Airport         |40.0       |
+|1005   |204      |David Kim    |sedan       |Suburbs        |Uptown          |30.0       |
++-------+---------+-------------+------------+---------------+----------------+-----------+
+only showing top 5 rows
+
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+|ride_id|driver_id|pickup_location|dropoff_location|distance_miles|fare_amount|ride_date |ride_type|rating|
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+|1001   |201      |Downtown       |Midtown         |3.2           |12.5       |2025-01-05|standard |4.5   |
+|1002   |202      |Airport        |Suburbs         |18.5          |45.0       |2025-01-06|premium  |5.0   |
+|1003   |203      |Uptown         |Downtown        |5.8           |22.0       |2025-01-06|standard |3.5   |
+|1004   |201      |Midtown        |Airport         |16.2          |40.0       |2025-01-07|premium  |4.0   |
+|1005   |204      |Suburbs        |Uptown          |10.4          |30.0       |2025-01-08|pool     |NULL  |
++-------+---------+---------------+----------------+--------------+-----------+----------+---------+------+
+only showing top 5 rows
+
+Top 3 highest-fare rides:
++-------+---------------+----------------+-----------+
+|ride_id|pickup_location|dropoff_location|fare_amount|
++-------+---------------+----------------+-----------+
+|1018   |Suburbs        |Airport         |48.0       |
+|1002   |Airport        |Suburbs         |45.0       |
+|1010   |Airport        |Downtown        |42.0       |
++-------+---------------+----------------+-----------+
+
+Rides sorted by fare_amount, then distance_miles:
++-------+-----------+--------------+
+|ride_id|fare_amount|distance_miles|
++-------+-----------+--------------+
+|1018   |48.0       |20.1          |
+|1002   |45.0       |18.5          |
+|1010   |42.0       |17.8          |
+|1004   |40.0       |16.2          |
+|1013   |39.0       |15.3          |
++-------+-----------+--------------+
+only showing top 5 rows
+
+Rides with null rating: 4
+Null ratings filled with 0.0:
++-------+------+
+|ride_id|rating|
++-------+------+
+|1001   |4.5   |
+|1002   |5.0   |
+|1003   |3.5   |
+|1004   |4.0   |
+|1005   |0.0   |
+|1006   |4.8   |
+|1007   |0.0   |
+|1008   |4.2   |
+|1009   |3.0   |
+|1010   |4.7   |
++-------+------+
+only showing top 10 rows
+
+
+Added 'ride_category' column:
++-------+--------------+-------------+
+|ride_id|distance_miles|ride_category|
++-------+--------------+-------------+
+|1001   |3.2           |medium       |
+|1002   |18.5          |long         |
+|1003   |5.8           |medium       |
+|1004   |16.2          |long         |
+|1005   |10.4          |long         |
+|1006   |2.1           |short        |
+|1007   |4.5           |medium       |
+|1008   |14.0          |long         |
+|1009   |7.3           |medium       |
+|1010   |17.8          |long         |
+|1011   |6.0           |medium       |
+|1012   |9.5           |long         |
+|1013   |15.3          |long         |
+|1014   |3.8           |medium       |
+|1015   |8.7           |long         |
++-------+--------------+-------------+
+only showing top 15 rows
+
+Running revenue total for each driver:
++-------+---------+----------+-----------+---------------+
+|ride_id|driver_id|ride_date |fare_amount|running_revenue|
++-------+---------+----------+-----------+---------------+
+|1001   |201      |2025-01-05|12.5       |12.5           |
+|1004   |201      |2025-01-07|40.0       |52.5           |
+|1012   |201      |2025-01-19|28.0       |80.5           |
+|1002   |202      |2025-01-06|45.0       |45.0           |
+|1007   |202      |2025-01-10|15.0       |60.0           |
+|1016   |202      |2025-02-01|35.0       |95.0           |
+|1003   |203      |2025-01-06|22.0       |22.0           |
+|1009   |203      |2025-01-14|25.0       |47.0           |
+|1018   |203      |2025-02-05|48.0       |95.0           |
+|1005   |204      |2025-01-08|30.0       |30.0           |
++-------+---------+----------+-----------+---------------+

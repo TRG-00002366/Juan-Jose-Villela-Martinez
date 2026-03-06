@@ -13,7 +13,8 @@ from pyspark.sql.functions import col, sum as spark_sum, avg, count, min, max, c
 # SETUP - Do not modify
 # =============================================================================
 
-spark = SparkSession.builder.appName("Exercise: Aggregations").master("local[*]").getOrCreate()
+# spark = SparkSession.builder.appName("Exercise: Aggregations").master("local[*]").getOrCreate()
+spark = SparkSession.builder.appName("Exercise: Aggregations").getOrCreate()
 
 # Sample sales data
 sales = [
